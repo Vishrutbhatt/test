@@ -10,12 +10,11 @@ class DemoController extends Controller
 {
     //
 
-        public function insert(Request $req)
+    public function insert(Request $req)
     {
     	$usid = $req->input('uid');
     	$uname = $req->input('uname');
-    	$age = $req->input('age');
-    	
+    	$age = $req->input('age');	
     	$data = array('uid'=>$usid,'uname'=>$uname, 'age'=>$age);
 
     	DB::table('stud_info')->insert($data);
@@ -74,10 +73,7 @@ class DemoController extends Controller
 	
            // DB::update('update stud_info set uid = ?,uname=?,age=? where uid = ?',[$id,$uname,$age]);
  
-			echo Demo::where('uid',$request->uid)->update(['age'=>$request->age,'uname'=>$request->uname]);
-          
-          return redirect('usershow')->with('success',' updated successfully');
-							
-
+		echo Demo::where('uid',$request->uid)->update(['age'=>$request->age,'uname'=>$request->uname]);  
+        return redirect('usershow')->with('success',' updated successfully');
 	}
 }
