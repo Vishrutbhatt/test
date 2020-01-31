@@ -26,7 +26,7 @@ class DemoController extends Controller
     public function getData(Request $req)
     {
     	$data = DB::table('stud_info')->get();
-    	if (count($data) > 0) 
+    	if (count($data) > 0)  
     	{
     		return view('usershow',['data'=>$data]);
     		echo "Data Retrieved.!!";
