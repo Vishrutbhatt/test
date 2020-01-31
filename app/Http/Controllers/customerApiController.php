@@ -50,7 +50,20 @@ class customerApiController extends Controller
 	}
 
 	public function update(Request $request,$id)
-	{
+	{	
+
+		$rules = [
+			'cname' => 'required|alpha|min:3|max:25',
+			'address' => 'required| min:5',
+			'contact' => 'required|numeric|min:6',
+		];
+
+		$Validator = Validator::make($request->all(), $rules);
+		if($Validator->fails())
+		{
+			return response()->json($Validator->errors(),400); //server does not understand the request due to invalid syntax
+		} 
+		
 		$customerData = Customer::find($id);
 		$customerData->cname = $request->input('cname');
 		$customerData->address = $request->input('address');
