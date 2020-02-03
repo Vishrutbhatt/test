@@ -8,7 +8,7 @@
   </head>
   <body>
     <div class="container">
-    <h2>Laravel Dependent Dropdown  Tutorial With Example</h2>
+    <h2>Laravel Dropdown Example</h2>
             <div class="form-group">
                 <label for="country">Select Country:</label>
                 <select name="country" class="form-control" style="width:250px">
