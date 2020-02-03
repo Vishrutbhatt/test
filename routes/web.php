@@ -19,6 +19,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('dropdownlist','DataController@getCountries');
+Route::get('dropdownlist/getstates/{id}','DataController@getStates');
+
 
 Route::get('/usershow',"DemoController@getData");
 Route::post('/usershow',"DemoController@insert");

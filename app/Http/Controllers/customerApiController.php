@@ -21,14 +21,14 @@ class customerApiController extends Controller
 		{
 			return response()->json($Validator->errors(),400); //server does not understand the request due to invalid syntax
 		}	
-		//$customerData = Customer::create($request->all()); //one line to insert try this 
-		$customerData = new Customer;
+		//$customerData = Customer::create($request->all()); //one line to insert try this for this we have to use fillable varibale in the model 
+	    $customerData = new Customer;
 		$customerData->cname = $request->input('cname');
 		$customerData->address = $request->input('address');
 		$customerData->contact = $request->input('contact');
 		$customerData->save();
-		var_dump($customerData);
-		//return response()->json($customerData);
+		//var_dump($customerData);
+		return response()->json($customerData);
 
 	}
 	public function findById($id)
@@ -63,7 +63,7 @@ class customerApiController extends Controller
 		{
 			return response()->json($Validator->errors(),400); //server does not understand the request due to invalid syntax
 		} 
-		
+
 		$customerData = Customer::find($id);
 		$customerData->cname = $request->input('cname');
 		$customerData->address = $request->input('address');
