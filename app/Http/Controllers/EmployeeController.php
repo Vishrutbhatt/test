@@ -14,8 +14,8 @@ class EmployeeController extends Controller
 		//create on variable 
 		//second use the Employee::all() method to fetch all the data 
 		//retrun the view on the same page and the data into $employees as the key
-        
-        $employees = Employee::all();
+        $employees = Employee::paginate(5);
+        //$employees = Employee::all();
         return view('employees.index',['employees'=>$employees]);
     }
 
@@ -39,6 +39,8 @@ class EmployeeController extends Controller
 			'lastname'=> 'required|alpha|min:3|max:15',
 			'department'=> 'required|alpha',
 			'contact'=> 'required|numeric|min:6|max:12|unique:employees',
+			//'email' => 'trim|lowercase', we can trim the input and convert the lower case input of username to the upper case 
+            //'name' => 'trim|capitalize|escape'
 						] );
 
 		$employees = new Employee();

@@ -1,7 +1,9 @@
 
     <html>
+    <head><title>Employees Details</title></head>
      <body>
-      <table border="1">
+      <h2><u><center>Employee's Detail</center></u></h2>
+      <table border="1" align ="center">
         <tr>
           <th>ID</th>
           <th>First Name</th>
@@ -21,5 +23,6 @@
           </tr>
         @endforeach
       </table>
+        {{ $employees->links() }}
      </body>
     </html>  
