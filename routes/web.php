@@ -17,16 +17,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
+
 //passport api/AuthController route 
 Route::post('/register', 'Api\AuthController@register');
 Route::post('/login', 'Api\AuthController@login');
 
 
+
 Route::get('/home', 'HomeController@index')->name('home');
+
 
 //Drop down routes for the sample showing demo data 
 Route::get('dropdownlist','DataController@getCountries');
 Route::get('dropdownlist/getstates/{id}','DataController@getStates');
+
+
 
 // ---------- usershow is for the crud operation done in database using the laravel ------------ 
 Route::get('/usershow',"DemoController@getData");
@@ -36,6 +41,8 @@ Route::get('/delete/{id}',"DemoController@delete");
 Route::post('updateuser',"DemoController@update");
 Route::get('usershow','DemoController@index');
 Route::get('update/{id}','DemoController@show');
+
+
 
 
 // ------------employees is the elquent method to perform the crud in db ---------------
@@ -52,3 +59,6 @@ Route::post('/employees/update','EmployeeController@update')->name('employees.up
 Route::get('session/get','SessionController@access');
 Route::get('session/set','SessionController@store');
 Route::get('session/remove','SessionController@delete');
+
+
+?>
