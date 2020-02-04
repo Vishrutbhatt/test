@@ -12,10 +12,15 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome');    // we will change from 'welcome' to 'index' becauze we have use index.blade.php as a bootstrape template file 
 })->name('home');
 
 Auth::routes();
+
+//passport api/AuthController route 
+Route::post('/register', 'Api\AuthController@register');
+Route::post('/login', 'Api\AuthController@login');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

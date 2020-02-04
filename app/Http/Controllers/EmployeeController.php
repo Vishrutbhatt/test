@@ -38,7 +38,7 @@ class EmployeeController extends Controller
 			'firstname'=> 'required|alpha|min:3|max:15',
 			'lastname'=> 'required|alpha|min:3|max:15',
 			'department'=> 'required|alpha',
-			'contact'=> 'required|numeric|min:6|max:12|unique:employees',
+			'contact'=> 'required|numeric|min:6|unique:employees',
 			//'email' => 'trim|lowercase', we can trim the input and convert the lower case input of username to the upper case 
             //'name' => 'trim|capitalize|escape'
 						] );
