@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-  <!-- Content Header (Page header) -->
+ <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -28,14 +28,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3>Retrieve all </h3>
 
-                <p>New Orders</p>
+                <p>Employees Details</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/employees" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -43,14 +43,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>Insert<sup style="font-size: 20px"></sup></h3>
 
-                <p>Bounce Rate</p>
+                <p>Add Employee Details</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="create" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -58,14 +58,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>Update</h3>
 
-                <p>User Registrations</p>
+                <p>Update Employee Details</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/employees/{id}/edit" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -73,14 +73,14 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h3>Delete</h3>
 
-                <p>Unique Visitors</p>
+                <p>Deleting the records</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="/employees/{id}/delete" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -148,11 +148,11 @@
                   <!-- Message. Default to the left -->
                   <div class="direct-chat-msg">
                     <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-left">Alexander Pierce</span>
+                      <span class="direct-chat-name float-left">Vishrut</span>
                       <span class="direct-chat-timestamp float-right">23 Jan 2:00 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="{{ asset('dist/img/user1-128x128.jpg') }}" alt="message user image">
+                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       Is this template really for free? That's unbelievable!
@@ -168,7 +168,7 @@
                       <span class="direct-chat-timestamp float-left">23 Jan 2:05 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="{{ asset('dist/img/user3-128x128.jpg') }}" alt="message user image">
+                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       You better believe it!
@@ -180,11 +180,11 @@
                   <!-- Message. Default to the left -->
                   <div class="direct-chat-msg">
                     <div class="direct-chat-infos clearfix">
-                      <span class="direct-chat-name float-left">Alexander Pierce</span>
+                      <span class="direct-chat-name float-left">Vishrut</span>
                       <span class="direct-chat-timestamp float-right">23 Jan 5:37 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="{{ asset('dist/img/user1-128x128.jpg') }}" alt="message user image">
+                    <img class="direct-chat-img" src="dist/img/user1-128x128.jpg" alt="message user image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       Working with AdminLTE on a great new app! Wanna join?
@@ -200,7 +200,7 @@
                       <span class="direct-chat-timestamp float-left">23 Jan 6:10 pm</span>
                     </div>
                     <!-- /.direct-chat-infos -->
-                    <img class="direct-chat-img" src="{{ asset('dist/img/user3-128x128.jpg') }}" alt="message user image">
+                    <img class="direct-chat-img" src="dist/img/user3-128x128.jpg" alt="message user image">
                     <!-- /.direct-chat-img -->
                     <div class="direct-chat-text">
                       I would love to.
@@ -217,7 +217,7 @@
                   <ul class="contacts-list">
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="{{ asset('dist/img/user1-128x128.jpg') }}">
+                        <img class="contacts-list-img" src="dist/img/user1-128x128.jpg">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -232,7 +232,7 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="{{ asset('dist/img/user7-128x128.jpg') }}">
+                        <img class="contacts-list-img" src="dist/img/user7-128x128.jpg">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -247,7 +247,7 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="{{ asset('dist/img/user3-128x128.jpg') }}">
+                        <img class="contacts-list-img" src="dist/img/user3-128x128.jpg">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -262,7 +262,7 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="{{ asset('dist/img/user5-128x128.jpg') }}">
+                        <img class="contacts-list-img" src="dist/img/user5-128x128.jpg">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -277,7 +277,7 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="{{ asset('dist/img/user6-128x128.jpg') }}">
+                        <img class="contacts-list-img" src="dist/img/user6-128x128.jpg">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">
@@ -292,7 +292,7 @@
                     <!-- End Contact Item -->
                     <li>
                       <a href="#">
-                        <img class="contacts-list-img" src="{{ asset('dist/img/user8-128x128.jpg') }}">
+                        <img class="contacts-list-img" src="dist/img/user8-128x128.jpg">
 
                         <div class="contacts-list-info">
                           <span class="contacts-list-name">

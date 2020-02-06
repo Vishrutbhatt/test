@@ -27,3 +27,14 @@ Route::post('/customer','customerApiController@insert');
 Route::put('/customer/{id}','customerApiController@update');
 
 Route::delete('/customer/{id}','customerApiController@delete');
+
+
+
+
+Route::get('/customerCountry','customerCountryController@display');
+Route::post('/customerCountry','customerCountryController@insert');
+
+
+Route::get('/jointable','joinTableController@index');
+
+?>

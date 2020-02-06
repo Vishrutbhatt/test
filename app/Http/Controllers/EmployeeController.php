@@ -68,7 +68,7 @@ class EmployeeController extends Controller
 			'firstname'=> 'required|alpha|min:3|max:15',
 			'lastname'=> 'required|alpha|min:3|max:15',
 			'department'=> 'required|alpha',
-			'contact'=> 'required|numeric|min:6|max:12|unique:employees',
+			'contact'=> 'required|numeric|min:6',
 						] );
 		
 		$employees = Employee::find($req->input('id'));

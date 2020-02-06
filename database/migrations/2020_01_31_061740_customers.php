@@ -14,10 +14,12 @@ class Customers extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->Increments('id');
+            $table->Increments('cid');
             $table->string('cname');
             $table->string('address');
             $table->integer('contact');
+//$table->bigInteger('countryid')->unsigned();
+           // $table->foreign('countryid')->reference('id')->on('countries');
             $table->timestamps();
         });
     }
