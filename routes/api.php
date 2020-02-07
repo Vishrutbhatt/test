@@ -37,4 +37,8 @@ Route::post('/customerCountry','customerCountryController@insert');
 
 Route::get('/jointable','joinTableController@index');
 
+Route::get('/downloadFile','FileController@downloadfile');
+
+Route::post('/UploadFile','FileController@UploadFile');
+
 ?>
