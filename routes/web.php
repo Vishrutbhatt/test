@@ -43,7 +43,7 @@ Route::get('update/{id}','DemoController@show');
 
 
 // ------------employees is the elquent method to perform the crud in db ---------------
-Route::get('/employees',"EmployeeController@searchFilter");
+//Route::post('/search',"EmployeeController@searchFilter");
 Route::get('/employees', 'EmployeeController@index')->name('employees.index');
 Route::get('/employees/{id}/edit','EmployeeController@edit')->name('employees.edit');
 Route::get('/employees/{id}/delete','EmployeeController@delete')->name('employees.delete');

@@ -7,33 +7,70 @@ use Illuminate\Http\Request;
 class FileController extends Controller
 {
 
-	public function downloadfile()
+	public function showImageFileInDirectory()
+	{
+		return response()->url('/assets/');
+	}
+
+ 	public function downloadfile()
 	{	
   		return response()->download(public_path('/assets/avatar.png'), 'User Demo Avatar Image');
   	}
 
+  	public function multipleUpload(Request $request)
+	{	
+		if(!$request->hasFile('image'))
+   	 	{
+   	 	    return response()->json(['upload_file_not_found'], 400);
+   	 	}
+
+    	$paths = [];
+    	$files = $request->file('image');
+    	$fileName = 'profile-'.time().'.'.$files->getClientOriginalExtension();
+		$files->move($paths,$fileName);
+    	$photoUrl = url('/assets/'.$fileName);
+    		
+		if(!$files->isValid()) 
+   	 	{
+        	return response()->json(['invalid_file_upload'], 400);
+    	}
+
+    	foreach ($files as $file)
+    	{
+    	    // Generate a file name with extension
+    	   
+    	    // Save the file
+    	   
+    	  $paths[] = $file->storeAs('image', $fileName);
+
+    	}
+    	return response()->json(['paths' => $photoUrl], 200);
+    		
+    	//dd($paths);
+	}
+
   	public function UploadFile(Request $request)
   	{
   
-   	 if(!$request->hasFile('image'))
-   	 {
-   	     return response()->json(['upload_file_not_found'], 400);
-   	 }
+   	 	if(!$request->hasFile('image'))
+   	 	{
+   	 	    return response()->json(['upload_file_not_found'], 400);
+   	 	}
 
-   	 //$allowedFileExtension = ['jpeg','png','docs','pdf'];
+   	 	//$allowedFileExtension = ['jpeg','png','docs','pdf'];
 
-   	 $file = $request->file('image');
+   	 	$file = $request->file('image');
     
    	 	if(!$file->isValid()) 
    	 	{
         	return response()->json(['invalid_file_upload'], 400);
     	}
-//    – getClientOriginalExtension(): Get the name of uploaded file
+		//– getClientOriginalExtension(): Get the name of uploaded file
+    	// uniqid($prefix, $more_entropy) has 2 parameter 1) specify the unique name and 2nd paramter false will return 13 char or true will return 23 character 
+   		 $fileName =  uniqid('image_', true) .  $file->getClientOriginalExtension();//"-". str_random(5).
 
-    $fileName =  uniqid('image_', true) . $file->getClientOriginalExtension();      
-
-    // save to storage/app/image as the new $filename
-    $path = $file->storeAs('image', $fileName);
+    	// save to storage/app/image as the new $filename
+    	$path = $file->storeAs('image', $fileName);
 
     	$file->move($path,$fileName); 
     	$photoUrl = url('/assets/'.$fileName);
@@ -42,8 +79,6 @@ class FileController extends Controller
   	}
 
 }
-
-
 
 
 //    – getRealPath(): Get the temporary upload path

@@ -34,9 +34,10 @@ Route::post('/customerCountry','customerCountryController@insert');
 Route::get('/jointable','joinTableController@index');
 
 
-
 Route::get('/downloadFile','FileController@downloadfile');
-Route::post('/UploadFile','FileController@UploadFile');
+Route::post('/uploadFile','FileController@UploadFile');
+Route::post('/uploadMultipleFile','FileController@multipleUpload');
+
 
 
 //passport api/AuthController route 

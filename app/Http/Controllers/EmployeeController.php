@@ -5,15 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Employee; //using the model called Employee 
 
+
 class EmployeeController extends Controller
 {
-	public function searchFilter(Request $req)
+	/*public function searchFilter(Request $req)
     {
-        //$search = $req->get('search');
-         $employees = Employee::all();
-        $employees = Employee::where('firstname', 'LIKE', '%admin%')->get();
-        return view('employees.index',['employees'=>$employees]);     
-    }
+        $search = $req->get('search');
+         //$employees = Employee::all();
+        $e = Employee::where ( 'firstname', 'LIKE', '%' . $search . '%' )->orWhere ( 'lastname', 'LIKE', '%' . $search . '%' )->get ();
+    if (count ( $e ) > 0)
+        return view ( 'employees.index' )->withDetails ( $e )->withQuery ( $search );
+    else
+        return view ( 'employees.index' )->withMessage ( 'No Details found. Try to search again !' );
+       // return view('employees.index',['employees'=>$employees]);     
+    }*/
 
 	public function index()
 	{	

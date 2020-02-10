@@ -4,10 +4,8 @@
      <body>
       <h2><u><center>Employee's Detail</center></u></h2>
 
-      <form action="{{route('employees.index')}}" method="get">
-  <input type="search" name="search">
-    <button type="submit">Search</button>
-  </form>
+ 
+
       <table border="1" align ="center">
         <tr>
           <th>ID</th>
@@ -28,6 +26,6 @@
           </tr>
         @endforeach
       </table>
-        {{ $employees->links() }}
+        {{ $employees->links() }}  <!-- this links is for the pagination-->
      </body>
     </html>  
