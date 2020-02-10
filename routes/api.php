@@ -19,13 +19,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 */
 
 Route::get('/customer','customerApiController@getAllData'); // for fetching all the data of all customer 
-
 Route::get('/customer/{id}','customerApiController@findById'); //for fetching the dat of particular customer
-
 Route::post('/customer','customerApiController@insert');
-
 Route::put('/customer/{id}','customerApiController@update');
-
 Route::delete('/customer/{id}','customerApiController@delete');
 
 
@@ -37,8 +33,16 @@ Route::post('/customerCountry','customerCountryController@insert');
 
 Route::get('/jointable','joinTableController@index');
 
-Route::get('/downloadFile','FileController@downloadfile');
 
+
+Route::get('/downloadFile','FileController@downloadfile');
 Route::post('/UploadFile','FileController@UploadFile');
 
-?>
+
+//passport api/AuthController route 
+Route::post('/register', 'Api\AuthController@register');
+Route::post('/login', 'Api\AuthController@login');
+Route::group(['middleware' => 'auth:api'], function()
+{
+Route::post('details', 'Api\AuthController@details');
+});

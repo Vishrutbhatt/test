@@ -28,21 +28,13 @@ class FileController extends Controller
    	 	{
         	return response()->json(['invalid_file_upload'], 400);
     	}
+//    – getClientOriginalExtension(): Get the name of uploaded file
 
-    $fileName =  uniqid('random_', true) . $file->getClientOriginalExtension(); //'img_' .    . '.'
+    $fileName =  uniqid('image_', true) . $file->getClientOriginalExtension();      
 
-    // save to storage/app/photos as the new $filename
-    $path = $file->storeAs('photos', $fileName);
+    // save to storage/app/image as the new $filename
+    $path = $file->storeAs('image', $fileName);
 
-    //dd($path);
-    	//uniqid('random_', true);
-    	 //$fileName = $file->getClientOriginalName() ;
-    	 //$extension = $file->getClientOriginalExtension();
-    	 //$check=in_array($extension,$allowedFileExtension);
-
-    	// if($check)
-    	// {	
-    	//$path = public_path() . '/assets/';
     	$file->move($path,$fileName); 
     	$photoUrl = url('/assets/'.$fileName);
     	return response()->json(['path' => $photoUrl], 200);
@@ -52,3 +44,18 @@ class FileController extends Controller
 }
 
 
+
+
+//    – getRealPath(): Get the temporary upload path
+//    – getClientOriginalName(): Get the name of uploaded file
+//    – getClientMimeType(): Get the mime type of uploaded file
+
+
+
+
+
+
+
+//To Do
+//$news = $newsRepo->where('title', 'like', '%Breaking News%')->get(); to perform the search filter in laravel 
+//SELECT * FROM news WHERE title LIKE "%Breaking news%" ORDER BY date DESC perform this

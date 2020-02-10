@@ -9,6 +9,7 @@ use DB;
 class DemoController extends Controller
 {
     //
+    
 
     public function insert(Request $req)
     {
@@ -26,8 +27,10 @@ class DemoController extends Controller
     public function getData(Request $req)
     {
     	$data = DB::table('stud_info')->get();
+
     	if (count($data) > 0)  
     	{
+
     		return view('usershow',['data'=>$data]);
     		echo "Data Retrieved.!!";
 
@@ -48,7 +51,9 @@ class DemoController extends Controller
     public function index()
 	{
 			$data = DB::select('select * from stud_info');
+        // $data = Demo::orderByDesc('uname', 'age')->get();  fetching data in descing order
 			return view('usershow',['data'=>$data]);
+           
            // return view('stud_edit_view',['data'=>$data]);
 	}
 	public function show($id) 

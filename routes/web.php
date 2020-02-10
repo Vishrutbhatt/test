@@ -15,12 +15,8 @@ Route::get('/', function () {
     return view('welcome');    // we will change from 'welcome' to 'index' becauze we have use index.blade.php as a bootstrape template file 
 })->name('home');
 
-Auth::routes();
 
 
-//passport api/AuthController route 
-Route::post('/register', 'Api\AuthController@register');
-Route::post('/login', 'Api\AuthController@login');
 
 
 
@@ -34,6 +30,7 @@ Route::get('dropdownlist/getstates/{id}','DataController@getStates');
 
 
 // ---------- usershow is for the crud operation done in database using the laravel ------------ 
+
 Route::get('/usershow',"DemoController@getData");
 Route::post('/usershow',"DemoController@insert");
 //Route::view('/DemoController',"DemoController@formSubmit");
@@ -46,6 +43,7 @@ Route::get('update/{id}','DemoController@show');
 
 
 // ------------employees is the elquent method to perform the crud in db ---------------
+Route::get('/employees',"EmployeeController@searchFilter");
 Route::get('/employees', 'EmployeeController@index')->name('employees.index');
 Route::get('/employees/{id}/edit','EmployeeController@edit')->name('employees.edit');
 Route::get('/employees/{id}/delete','EmployeeController@delete')->name('employees.delete');

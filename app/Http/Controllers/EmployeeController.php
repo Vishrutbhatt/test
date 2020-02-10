@@ -7,7 +7,14 @@ use App\Employee; //using the model called Employee
 
 class EmployeeController extends Controller
 {
-				
+	public function searchFilter(Request $req)
+    {
+        //$search = $req->get('search');
+         $employees = Employee::all();
+        $employees = Employee::where('firstname', 'LIKE', '%admin%')->get();
+        return view('employees.index',['employees'=>$employees]);     
+    }
+
 	public function index()
 	{	
 
@@ -15,6 +22,7 @@ class EmployeeController extends Controller
 		//second use the Employee::all() method to fetch all the data 
 		//retrun the view on the same page and the data into $employees as the key
         $employees = Employee::paginate(5);
+        
         //$employees = Employee::all();
         return view('employees.index',['employees'=>$employees]);
     }

@@ -1,47 +1,64 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\API;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
+use App\Http\Controllers\Controller; 
+use App\User; 
+use Illuminate\Support\Facades\Auth; 
 
-class AuthController extends Controller
+use Validator;
+
+class AuthController extends Controller 
+
 {
-    public function register(Request $request)
-   {
-        $validatedData = $request->validate([
-            'name'=>'required|max:55',
-            'email'=>'email|required|unique:users',
-            'password'=>'required|confirmed'
+
+    public $successStatus = 200;/** 
+     * login api 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    public function login(){ 
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){ 
+            $user = Auth::user(); 
+            $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+            return response()->json(['success' => $success], $this-> successStatus); 
+        } 
+        else{ 
+            return response()->json(['error'=>'Unauthorised'], 401); 
+        } 
+    }
+     /** 
+     * Register api 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    public function register(Request $request) 
+    { 
+        $validator = Validator::make($request->all(), [ 
+            'name' => 'required', 
+            'email' => 'required|email', 
+            'password' => 'required', 
+            'c_password' => 'required|same:password', 
         ]);
-
-        $validatedData['password'] = bcrypt($request->password);
-
-        $user = User::create($validatedData);
-
-        $accessToken = $user->createToken('authToken')->accessToken;
-
-        return response(['user'=> $user, 'access_token'=> $accessToken]);
-       
-   }
-
-
-   public function login(Request $request)
-   {
-        $loginData = $request->validate([
-            'email' => 'email|required',
-            'password' => 'required'
-        ]);
-       
-        if(!auth()->attempt($loginData)) {
-            return response(['message'=>'Invalid credentials']);
+        if ($validator->fails()) { 
+            return response()->json(['error'=>$validator->errors()], 401);            
         }
-
-        $accessToken = auth()->user()->createToken('authToken')->accessToken;
-
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
-
-   }
-
-
+        $input = $request->all(); 
+        $input['password'] = bcrypt($input['password']); 
+        $user = User::create($input); 
+        $success['token'] =  $user->createToken('MyApp')-> accessToken; 
+        $success['name'] =  $user->name;
+        return response()->json(['success'=>$success], $this-> successStatus); 
+    }
+/** 
+     * details api 
+     * 
+     * @return \Illuminate\Http\Response 
+     */ 
+    public function details() 
+    { 
+        $user = Auth::user(); 
+        return response()->json(['success' => $user], $this-> successStatus); 
+    } 
 }
