@@ -4,11 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Employee; //using the model called Employee 
+use DB;
 
 
 class EmployeeController extends Controller
 {
-	/*public function searchFilter(Request $req)
+	
+       public function filter($q)
+                {
+                        $filter = DB::table('employees')
+                                ->where('firstname', 'LIKE', $q)
+                                ->get();
+                        return $filter;
+                }        	
+		/*public function searchFilter(Request $req)
     {
         $search = $req->get('search');
          //$employees = Employee::all();
@@ -47,14 +56,14 @@ class EmployeeController extends Controller
 		//2nd take everyones value in form variable through request object
 		//save the data to insert the record 
 		// return the view to the specied index page
-		$req->validate( [
+		$req->validate([
 			'firstname'=> 'required|alpha|min:3|max:15',
 			'lastname'=> 'required|alpha|min:3|max:15',
 			'department'=> 'required|alpha',
 			'contact'=> 'required|numeric|min:6|unique:employees',
 			//'email' => 'trim|lowercase', we can trim the input and convert the lower case input of username to the upper case 
             //'name' => 'trim|capitalize|escape'
-						] );
+						]);
 
 		$employees = new Employee();
 		$employees->firstname = $req->input('firstname');
@@ -77,12 +86,12 @@ class EmployeeController extends Controller
 		// same as  the input which you want insert it...
 		// save it and return the route 
 		//dd($req);
-		$req->validate( [
+		$req->validate([
 			'firstname'=> 'required|alpha|min:3|max:15',
 			'lastname'=> 'required|alpha|min:3|max:15',
 			'department'=> 'required|alpha',
 			'contact'=> 'required|numeric|min:6',
-						] );
+						]);
 		
 		$employees = Employee::find($req->input('id'));
         $employees->firstname = $req->input('firstname');
