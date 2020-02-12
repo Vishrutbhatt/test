@@ -10,33 +10,23 @@ use DB;
 class EmployeeController extends Controller
 {
 	
-       public function filter($q)
-                {
-                        $filter = DB::table('employees')
-                                ->where('firstname', 'LIKE', $q)
-                                ->get();
-                        return $filter;
-                }        	
-		/*public function searchFilter(Request $req)
-    {
-        $search = $req->get('search');
-         //$employees = Employee::all();
-        $e = Employee::where ( 'firstname', 'LIKE', '%' . $search . '%' )->orWhere ( 'lastname', 'LIKE', '%' . $search . '%' )->get ();
-    if (count ( $e ) > 0)
-        return view ( 'employees.index' )->withDetails ( $e )->withQuery ( $search );
-    else
-        return view ( 'employees.index' )->withMessage ( 'No Details found. Try to search again !' );
-       // return view('employees.index',['employees'=>$employees]);     
-    }*/
+   public function filter($fone, $data1, $ftwo=null, $data2=null, $fthree=null, $data3=null)
+	{
+        if ($fone && $ftwo && $fthree) {
+        	$filter = Employee::Where($fone, $data1)->Where($ftwo, $data2)->Where($fthree, $data3)->get();	
+        } else if ($fone && $ftwo) {
+        	$filter = Employee::Where($fone, $data1)->Where($ftwo, $data2)->get();
+        } else {
+        	$filter = Employee::Where($fone, $data1)->get();
+        }
+ 
+        return $filter;
+    }
 
 	public function index()
 	{	
-
-		//create on variable 
-		//second use the Employee::all() method to fetch all the data 
-		//retrun the view on the same page and the data into $employees as the key
         $employees = Employee::paginate(5);
-        
+
         //$employees = Employee::all();
         return view('employees.index',['employees'=>$employees]);
     }

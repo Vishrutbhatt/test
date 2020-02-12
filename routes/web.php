@@ -41,8 +41,12 @@ Route::get('update/{id}','DemoController@show');
 
 
 // ------------employees is the elquent method to perform the crud in db ---------------
-//Route::post('/search',"EmployeeController@searchFilter");
-Route::get("search/{parameter}", "EmployeeController@filter");
+
+
+//Route::get("search/department/{dept}", "EmployeeController@filter");
+
+Route::get("search/{fone}/{dept}/{ftwo?}/{fname?}/{fthree?}/{lname?}", "EmployeeController@filter");
+
 Route::get('/employees', 'EmployeeController@index')->name('employees.index');
 Route::get('/employees/{id}/edit','EmployeeController@edit')->name('employees.edit');
 Route::get('/employees/{id}/delete','EmployeeController@delete')->name('employees.delete');
@@ -56,6 +60,10 @@ Route::post('/employees/update','EmployeeController@update')->name('employees.up
 Route::get('session/get','SessionController@access');
 Route::get('session/set','SessionController@store');
 Route::get('session/remove','SessionController@delete');
+
+
+
+//Route::get("search/{dept}/{name?}", "EmployeeController@filter"); //optional parameter 
 
 
 

@@ -16,7 +16,7 @@ class FileController extends Controller
 	{	
   		return response()->download(public_path('/assets/avatar.png'), 'User Demo Avatar Image');
   	}
-
+  	
   	public function multipleUpload(Request $request)
 	{	
 		if(!$request->hasFile('image'))
@@ -26,9 +26,6 @@ class FileController extends Controller
 
     	$paths = [];
     	$files = $request->file('image');
-    	$fileName = 'profile-'.time().'.'.$files->getClientOriginalExtension();
-		$files->move($paths,$fileName);
-    	$photoUrl = url('/assets/'.$fileName);
     		
 		if(!$files->isValid()) 
    	 	{
@@ -40,15 +37,19 @@ class FileController extends Controller
     	    // Generate a file name with extension
     	   
     	    // Save the file
-    	   
-    	  $paths[] = $file->storeAs('image', $fileName);
+    	$fileName = 'profile-'.time().'.'.$files->getClientOriginalExtension();
+    	$paths[] = $file->storeAs('image', $fileName);
+		$files->move($paths,$fileName);
+    	$photoUrl = url('/assets/'.$fileName);
+ 
+    	
 
     	}
-    	return response()->json(['paths' => $photoUrl], 200);
+    	return response()->json(['paths' => $files], 200);
     		
     	//dd($paths);
 	}
-
+	
   	public function UploadFile(Request $request)
   	{
   
